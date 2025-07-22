@@ -142,11 +142,12 @@
             flex: 1; display: flex; flex-direction: column; align-items: center;
             background: none; border: none; cursor: pointer; padding: 10px 0;
             color: var(--text-secondary);
+            position: relative;
         }
         .nav-btn svg { width: 28px; height: 28px; fill: var(--text-secondary); transition: fill 0.2s, transform 0.2s; }
         .nav-btn.active svg { fill: var(--primary-color); transform: scale(1.1); }
         .nav-btn .badge {
-            position: absolute; top: 5px; right: 25%;
+            position: absolute; top: 5px; right: 30%;
             background-color: var(--error-color); color: white;
             font-size: 0.7rem; font-weight: bold;
             border-radius: 50%; min-width: 18px; height: 18px;
@@ -154,13 +155,14 @@
         }
 
         /* --- অ্যাপের বিভিন্ন ভিউ --- */
+        #main-content { height: 100%; }
         .main-view { width: 100%; height: 100%; overflow-y: auto; display: none; background-color: var(--bg-primary); }
         .main-view.active { display: block; }
         
         .user-list-item { display: flex; align-items: center; gap: 15px; padding: 15px 20px; cursor: pointer; border-bottom: 1px solid var(--bg-secondary); justify-content: space-between; }
         .user-list-item:hover { background-color: var(--bg-secondary); }
         .user-info { display: flex; align-items: center; gap: 15px; }
-        .user-avatar { width: 56px; height: 56px; border-radius: 50%; background-color: var(--bg-tertiary); color: var(--text-secondary); display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1.5rem; overflow: hidden; }
+        .user-avatar { width: 56px; height: 56px; border-radius: 50%; background-color: var(--bg-tertiary); color: var(--text-secondary); display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1.5rem; overflow: hidden; flex-shrink: 0; }
         .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .user-details .user-name { font-weight: 600; font-size: 1.1rem; color: var(--text-primary); }
         .user-details .last-message { color: var(--text-secondary); }
@@ -176,19 +178,16 @@
         /* --- সার্চ ওভারলে --- */
         #search-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(255, 255, 255, 0.9);
             z-index: 200; display: none;
-            align-items: flex-start; justify-content: center;
+            flex-direction: column;
         }
-        #search-container {
-            width: 100%; max-width: 500px; background: var(--bg-primary); margin-top: 5%;
-            border-radius: 12px; display: flex; flex-direction: column;
-        }
-        .search-header { display: flex; padding: 15px; border-bottom: 1px solid var(--bg-secondary); }
-        #search-back-btn { background:none; border:none; font-size: 1.5rem; cursor: pointer; margin-right: 15px; }
-        #search-input { flex-grow: 1; border:none; font-size: 1.1rem; background: transparent; }
+        .search-header-container { background: var(--bg-primary); box-shadow: var(--shadow); padding: 10px; }
+        .search-header { display: flex; align-items: center; }
+        #search-back-btn { background:none; border:none; font-size: 1.8rem; cursor: pointer; margin-right: 15px; color: var(--text-secondary); }
+        #search-input { flex-grow: 1; border:none; font-size: 1.1rem; background: transparent; padding: 10px; }
         #search-input:focus { outline: none; }
-        #search-results { max-height: 70vh; overflow-y: auto; }
+        #search-results { flex-grow: 1; overflow-y: auto; }
 
         /* --- চ্যাট উইন্ডো --- */
         #chat-window {
@@ -209,7 +208,7 @@
         .message-input-form { display: flex; padding: 10px; background-color: var(--bg-primary); border-top: 1px solid var(--bg-secondary); }
         #message-input { flex-grow: 1; background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 20px; padding: 12px 18px; color: var(--text-primary); font-size: 1rem; resize: none; margin-right: 10px; }
         #message-input:focus { outline: none; border-color: var(--primary-color); }
-        #send-button { background: var(--primary-color); border: none; color: white; font-size: 1.5rem; cursor: pointer; width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        #send-button { background: var(--primary-color); border: none; color: white; font-size: 1.5rem; cursor: pointer; width: 48px; height: 48px; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
 
         /* --- নতুন প্রোফাইল পেজ --- */
         #profile-view { padding: 20px; text-align: center; }
@@ -223,11 +222,12 @@
             border: 2px solid white; cursor: pointer;
             display: flex; justify-content: center; align-items: center;
         }
+        #change-pic-btn svg { width: 20px; height: 20px; }
         #profile-username { font-size: 1.8rem; font-weight: bold; margin-top: 15px; }
-        #profile-bio-editor { margin-top: 20px; width: 100%; max-width: 400px; }
+        #profile-bio-editor { margin-top: 20px; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto; }
         #bio-input { width: 100%; min-height: 80px; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--bg-secondary); font-family: inherit; font-size: 1rem; resize: vertical; }
-        .save-bio-btn { margin-top: 10px; max-width: 150px; }
-        #logout-btn { margin-top: 40px; background-color: var(--error-color); max-width: 200px; }
+        .save-bio-btn { margin-top: 10px; max-width: 150px; margin-left: auto; margin-right: auto; }
+        #logout-btn { margin-top: 40px; background-color: var(--error-color); max-width: 200px; margin-left: auto; margin-right: auto; }
         .placeholder-text { padding: 40px 20px; text-align: center; color: var(--text-secondary); }
 
     </style>
@@ -236,7 +236,7 @@
 
     <div id="loader-screen" class="screen active"><div class="loader"></div></div>
 
-    <!-- লগইন স্ক্রিন (উন্নত ডিজাইন) -->
+    <!-- লগইন স্ক্রিন -->
     <div id="login-screen" class="screen auth-screen">
         <div>
             <h1>ChatApp</h1>
@@ -256,7 +256,7 @@
         </div>
     </div>
     
-    <!-- ইউজারনেম স্ক্রিন (উন্নত ডিজাইন) -->
+    <!-- ইউজারনেম স্ক্রিন -->
     <div id="username-screen" class="screen auth-screen">
         <div>
             <h2>Create Your Username</h2>
@@ -269,39 +269,28 @@
         </div>
     </div>
 
-    <!-- মূল অ্যাপ (সম্পূর্ণ নতুন ইন্টারফেস) -->
+    <!-- মূল অ্যাপ -->
     <div id="main-app-screen" class="screen">
-        <!-- টপ হেডার -->
         <header id="main-header">
             <h1 class="app-title">ChatApp</h1>
             <div class="header-icons">
-                <button class="icon-btn" id="add-friend-btn">
-                     <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
-                </button>
                 <button class="icon-btn" id="search-btn">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
                 </button>
             </div>
         </header>
-
-        <!-- মূল কন্টেন্ট এরিয়া -->
         <main id="main-content">
-            <div id="home-view" class="main-view active">
-                 <!-- এখানে বন্ধুদের চ্যাট লিস্ট আসবে -->
-            </div>
-            <div id="requests-view" class="main-view">
-                 <!-- এখানে ফ্রেন্ড রিকুয়েস্ট লিস্ট আসবে -->
-            </div>
-            <!-- প্রোফাইল পেজ (নতুন) -->
+            <div id="home-view" class="main-view active"></div>
+            <div id="requests-view" class="main-view"></div>
             <div id="profile-view" class="main-view">
                 <div id="profile-avatar-container">
-                    <img id="profile-avatar" src="placeholder.png" alt="Profile Picture">
+                    <img id="profile-avatar" src="" alt="Profile Picture">
                     <input type="file" id="profile-pic-upload" accept="image/*">
                     <label for="profile-pic-upload" id="change-pic-btn">
-                        <svg viewBox="0 0 24 24" fill="white"><path d="M20.56,3.44a1,1,0,0,0-1.42,0L13,9.59,9,5.59a1,1,0,0,0-1.42,0L3,10.17V20a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V8.83ZM5,18.59l4-4L13,18.59,19.17,11,15.59,7.41,10.41,12.6Z"></path></svg>
+                        <svg viewBox="0 0 24 24" fill="white"><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.36z" style="display:none;"></path><path d="M20 5h-3.17L15 3h-6l-1.83 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H4V7h4.05l1.83-2h4.24l1.83 2H20v12zM12 9c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path></svg>
                     </label>
                 </div>
-                <h2 id="profile-username">@username</h2>
+                <h2 id="profile-username"></h2>
                 <div id="profile-bio-editor">
                     <textarea id="bio-input" placeholder="Write something about yourself..."></textarea>
                     <button class="btn primary-btn save-bio-btn">Save Bio</button>
@@ -309,8 +298,6 @@
                 <button id="logout-btn" class="btn">Logout</button>
             </div>
         </main>
-        
-        <!-- বটম নেভিগেশন -->
         <nav id="bottom-nav">
             <button class="nav-btn active" data-view="home-view">
                 <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
@@ -327,13 +314,13 @@
 
     <!-- সার্চ ওভারলে -->
     <div id="search-overlay">
-        <div id="search-container">
+        <div class="search-header-container">
             <div class="search-header">
                 <button id="search-back-btn">←</button>
                 <input type="text" id="search-input" placeholder="Search by @username...">
             </div>
-            <div id="search-results"></div>
         </div>
+        <div id="search-results"></div>
     </div>
     
     <!-- চ্যাট উইন্ডো -->
@@ -357,10 +344,8 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, RecaptchaVerifier, signInWithPhoneNumber, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, writeBatch, collection, query, where, getDocs, onSnapshot, updateDoc, arrayUnion, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-        // নতুন: প্রোফাইল ছবি আপলোড করার জন্য স্টোরেজ ইম্পোর্ট
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
 
-        // তোমার Firebase কনফিগারেশন এখানে পেস্ট করো
         const firebaseConfig = {
           apiKey: "AIzaSyBvmTzkKpYMhHo4Fv7_E0nzmG7_sPxztJA",
           authDomain: "abhijitchatapp.firebaseapp.com",
@@ -374,64 +359,79 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const storage = getStorage(app); // নতুন: স্টোরেজ ইনিশিয়ালাইজ
+        const storage = getStorage(app);
 
-        // লগইন ও ইউজারনেম পেজের DOM এলিমেন্টস আগের মতোই আছে...
-        
-        // নতুন UI-এর জন্য DOM এলিমেন্টস
-        const mainAppScreen = document.getElementById('main-app-screen');
+        // --- DOM Elements ---
+        const screens = document.querySelectorAll('.screen');
+        const googleBtn = document.getElementById('google-signin-btn');
+        const phoneBtn = document.getElementById('phone-signin-btn');
+        const phoneAuthSection = document.getElementById('phone-auth-section');
+        const phoneInput = document.getElementById('phone-number-input');
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const recaptchaContainer = document.getElementById('recaptcha-container');
+        const otpInputSection = document.getElementById('otp-input-section');
+        const otpInput = document.getElementById('otp-input');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const usernameForm = document.getElementById('username-form');
+        const usernameInput = document.getElementById('username-input');
+        const usernameStatus = document.getElementById('username-status');
         const navBtns = document.querySelectorAll('.nav-btn');
         const mainViews = document.querySelectorAll('.main-view');
         const homeView = document.getElementById('home-view');
         const requestsView = document.getElementById('requests-view');
-        const profileView = document.getElementById('profile-view');
         const searchBtn = document.getElementById('search-btn');
         const searchOverlay = document.getElementById('search-overlay');
         const searchBackBtn = document.getElementById('search-back-btn');
         const searchInput = document.getElementById('search-input');
         const searchResults = document.getElementById('search-results');
         const requestsBadge = document.getElementById('requests-badge');
-
-        // প্রোফাইল পেজের DOM এলিমেন্টস
         const profileAvatar = document.getElementById('profile-avatar');
         const profilePicUpload = document.getElementById('profile-pic-upload');
         const profileUsername = document.getElementById('profile-username');
         const bioInput = document.getElementById('bio-input');
         const saveBioBtn = document.querySelector('.save-bio-btn');
         const logoutBtn = document.getElementById('logout-btn');
-        
-        // চ্যাট উইন্ডো DOM এলিমেন্টস আগের মতোই আছে...
         const chatWindow = document.getElementById('chat-window');
-
-        let currentUser = null;
-        // ... (বাকি ভ্যারিয়েবল আগের মতোই) ...
+        const chatAvatar = document.getElementById('chat-avatar');
+        const chatWithUsername = document.getElementById('chat-with-username');
+        const messagesWrapper = document.querySelector('.messages-wrapper');
+        const messageForm = document.getElementById('message-input-form');
+        const messageInput = document.getElementById('message-input');
+        const backArrow = chatWindow.querySelector('.back-arrow');
         
-        // নতুন: মূল অ্যাপের ভিউ পরিবর্তন করার ফাংশন
-        const showMainView = (viewId) => {
-            mainViews.forEach(view => view.classList.toggle('active', view.id === viewId));
-            navBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.view === viewId));
-            
-            // যখন প্রোফাইল ভিউ লোড হবে, তখন ডেটা দিয়ে পূর্ণ করবে
-            if (viewId === 'profile-view') {
-                loadProfileData();
-            }
+        // --- Global State ---
+        let currentUser = null;
+        let currentChatFriend = null;
+        let currentChatId = null;
+        let unsubscribeMessages = null;
+        let unsubscribeFriends = null;
+        let unsubscribeRequests = null;
+
+        // --- Helper Functions ---
+        const showScreen = (id) => screens.forEach(s => s.classList.toggle('active', s.id === id));
+        const debounce = (func, delay) => {
+            let timeout;
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
         };
-
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', () => showMainView(btn.dataset.view));
-        });
-
+        
+        // --- Core App Logic ---
         onAuthStateChanged(auth, async (user) => {
-            // ... (আগের unsubscribe লজিক এখানে থাকবে) ...
+            if (unsubscribeMessages) unsubscribeMessages();
+            if (unsubscribeFriends) unsubscribeFriends();
+            if (unsubscribeRequests) unsubscribeRequests();
+
             if (user) {
                 const userDocRef = doc(db, 'users', user.uid);
                 const userDocSnap = await getDoc(userDocRef);
                 if (userDocSnap.exists()) {
                     currentUser = { uid: user.uid, ...userDocSnap.data() };
                     showScreen('main-app-screen');
-                    showMainView('home-view'); // ডিফল্ট হিসাবে হোম ভিউ দেখাবে
-                    loadFriends(); // বন্ধুদের লোড করবে
-                    loadRequests(); // রিকুয়েস্ট লোড করবে
+                    showMainView('home-view');
+                    loadFriends();
+                    loadRequests();
                 } else {
                     showScreen('username-screen');
                 }
@@ -440,82 +440,134 @@
                 showScreen('login-screen');
             }
         });
+        
+        // --- Authentication ---
+        googleBtn.addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider).catch(error => alert(`Google Sign-In Error: ${error.message}`));
+        });
+        phoneBtn.addEventListener('click', () => { phoneAuthSection.style.display = phoneAuthSection.style.display === 'block' ? 'none' : 'block'; });
+        sendOtpBtn.addEventListener('click', () => {
+            sendOtpBtn.disabled = true;
+            sendOtpBtn.textContent = "Sending...";
+            if (!window.recaptchaVerifier) window.recaptchaVerifier = new RecaptchaVerifier(auth, recaptchaContainer, { 'size': 'invisible' });
+            signInWithPhoneNumber(auth, phoneInput.value, window.recaptchaVerifier)
+                .then(confirmationResult => {
+                    window.confirmationResult = confirmationResult;
+                    alert('OTP Sent!');
+                    otpInputSection.style.display = 'block';
+                }).catch(error => {
+                    alert(`Error: ${error.message}`);
+                    grecaptcha.reset(window.recaptchaVerifier.widgetId);
+                }).finally(() => {
+                    sendOtpBtn.disabled = false;
+                    sendOtpBtn.textContent = "Send OTP";
+                });
+        });
+        verifyOtpBtn.addEventListener('click', () => {
+            if (!window.confirmationResult) return alert('Please send OTP first.');
+            verifyOtpBtn.disabled = true;
+            verifyOtpBtn.textContent = "Verifying...";
+            window.confirmationResult.confirm(otpInput.value)
+                .catch(error => alert(`OTP Error: ${error.message}`))
+                .finally(() => {
+                    verifyOtpBtn.disabled = false;
+                    verifyOtpBtn.textContent = "Verify OTP";
+                });
+        });
+        
+        // --- Username Creation ---
+        const checkUsername = debounce(async (username) => {
+            username = username.toLowerCase();
+            if (username.length < 4) {
+                usernameStatus.textContent = 'Must be 4+ characters.';
+                usernameStatus.className = 'error'; return;
+            }
+            if (!/^[a-z0-9_]+$/.test(username)) {
+                usernameStatus.textContent = 'Only lowercase, numbers, _ allowed.';
+                usernameStatus.className = 'error'; return;
+            }
+            const ref = doc(db, 'usernames', username);
+            const docSnap = await getDoc(ref);
+            usernameStatus.className = docSnap.exists() ? 'error' : 'success';
+            usernameStatus.textContent = docSnap.exists() ? 'Username is already taken.' : 'Username is available!';
+        }, 500);
+        usernameInput.addEventListener('input', () => checkUsername(usernameInput.value));
+        usernameForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = usernameInput.value.toLowerCase();
+            const user = auth.currentUser;
+            if (!user || usernameStatus.className !== 'success') {
+                alert('Please choose a valid and available username.'); return;
+            }
+            const batch = writeBatch(db);
+            batch.set(doc(db, 'users', user.uid), {
+                username: username,
+                displayName: user.displayName || `User${user.uid.substring(0, 5)}`,
+                photoURL: user.photoURL || null,
+                bio: '',
+                createdAt: serverTimestamp()
+            });
+            batch.set(doc(db, 'usernames', username), { uid: user.uid });
+            await batch.commit();
+        });
 
-        // ... (Google ও Phone Auth লজিক আগের মতোই) ...
+        // --- UI Navigation & Interaction ---
+        const showMainView = (viewId) => {
+            mainViews.forEach(view => view.classList.toggle('active', view.id === viewId));
+            navBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.view === viewId));
+            if (viewId === 'profile-view') loadProfileData();
+        };
+        navBtns.forEach(btn => btn.addEventListener('click', () => showMainView(btn.dataset.view)));
+        searchBtn.addEventListener('click', () => searchOverlay.style.display = 'flex');
+        searchBackBtn.addEventListener('click', () => searchOverlay.style.display = 'none');
+        logoutBtn.addEventListener('click', () => signOut(auth).catch(error => alert('Logout Error: ' + error.message)));
 
-        // নতুন: প্রোফাইল ডেটা লোড এবং আপডেট করার ফাংশন
+        // --- Profile Management ---
         function loadProfileData() {
             if (!currentUser) return;
             profileAvatar.src = currentUser.photoURL || `https://ui-avatars.com/api/?name=${currentUser.username}&background=random&size=150`;
             profileUsername.textContent = '@' + currentUser.username;
             bioInput.value = currentUser.bio || '';
         }
-
         profilePicUpload.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file || !currentUser) return;
-
             const storageRef = ref(storage, `profile-pictures/${currentUser.uid}`);
             try {
-                // ছবি আপলোড হচ্ছে...
                 await uploadBytes(storageRef, file);
                 const photoURL = await getDownloadURL(storageRef);
-
-                // Firestore-এ URL আপডেট
-                await updateDoc(doc(db, 'users', currentUser.uid), { photoURL: photoURL });
-                
-                // লোকাল ডেটা ও UI আপডেট
+                await updateDoc(doc(db, 'users', currentUser.uid), { photoURL });
                 currentUser.photoURL = photoURL;
                 profileAvatar.src = photoURL;
                 alert('Profile picture updated!');
-
-            } catch (error) {
-                console.error("Error uploading profile picture: ", error);
-                alert('Failed to update profile picture.');
-            }
+            } catch (error) { alert('Failed to update profile picture.'); }
         });
-        
         saveBioBtn.addEventListener('click', async () => {
             const newBio = bioInput.value.trim();
             try {
                 await updateDoc(doc(db, 'users', currentUser.uid), { bio: newBio });
                 currentUser.bio = newBio;
                 alert('Bio updated successfully!');
-            } catch (error) {
-                console.error("Error updating bio: ", error);
-                alert('Failed to update bio.');
-            }
+            } catch (error) { alert('Failed to update bio.'); }
         });
-
-        logoutBtn.addEventListener('click', () => {
-            signOut(auth).catch(error => alert('Logout Error: ' + error.message));
-        });
-
-        // নতুন: সার্চ UI ম্যানেজমেন্ট
-        searchBtn.addEventListener('click', () => searchOverlay.style.display = 'flex');
-        searchBackBtn.addEventListener('click', () => searchOverlay.style.display = 'none');
-
-        // ইউজার রেন্ডার করার ফাংশন আপডেট করা হয়েছে
+        
+        // --- Data Loading & Rendering ---
         const renderUserListItem = (userData, type) => {
             const item = document.createElement('div');
             item.className = 'user-list-item';
-            
             const avatarSrc = userData.photoURL || `https://ui-avatars.com/api/?name=${userData.username}&background=random&size=112`;
-
-            let itemHTML = `
+            item.innerHTML = `
                 <div class="user-info">
                     <div class="user-avatar"><img src="${avatarSrc}" alt="${userData.username}"></div>
                     <div class="user-details">
                         <div class="user-name">@${userData.username}</div>
                         ${type === 'friend' ? '<div class="last-message">Tap to chat...</div>' : ''}
                     </div>
-                </div>
-            `;
-
+                </div>`;
             const actions = document.createElement('div');
-            if (type === 'friend') {
-                item.onclick = () => openChat(userData);
-            } else if (type === 'request') {
+            if (type === 'friend') item.onclick = () => openChat(userData);
+            else if (type === 'request') {
                 actions.className = 'request-actions';
                 actions.innerHTML = `<button class="accept-btn">Accept</button><button class="decline-btn">Decline</button>`;
                 actions.querySelector('.accept-btn').onclick = (e) => { e.stopPropagation(); acceptRequest(userData.uid); };
@@ -524,90 +576,116 @@
                 actions.innerHTML = `<button class="add-btn">Add Friend</button>`;
                 actions.querySelector('button').onclick = (e) => { e.stopPropagation(); sendRequest(userData.uid); };
             }
-            
-            item.innerHTML = itemHTML;
             item.appendChild(actions);
             return item;
         };
-
-        // বন্ধু এবং রিকুয়েস্ট লোড করার ফাংশন আপডেট করা হয়েছে
         function loadFriends() {
             const friendsRef = collection(db, 'users', currentUser.uid, 'friends');
-            onSnapshot(friendsRef, async (snapshot) => {
-                homeView.innerHTML = ''; // আগের লিস্ট পরিষ্কার করা হচ্ছে
-                if (snapshot.empty) {
-                    homeView.innerHTML = '<p class="placeholder-text">You have no friends yet. Search for users to add them.</p>';
-                    return;
+            unsubscribeFriends = onSnapshot(friendsRef, async (snapshot) => {
+                homeView.innerHTML = '';
+                if (snapshot.empty) homeView.innerHTML = '<p class="placeholder-text">Search for users to add friends.</p>';
+                else {
+                    const friendPromises = snapshot.docs.map(friendDoc => getDoc(doc(db, 'users', friendDoc.id)));
+                    const friendDocs = await Promise.all(friendPromises);
+                    friendDocs.forEach(friendDataSnap => {
+                        if (friendDataSnap.exists()) homeView.appendChild(renderUserListItem({ uid: friendDataSnap.id, ...friendDataSnap.data() }, 'friend'));
+                    });
                 }
-                const friendPromises = snapshot.docs.map(friendDoc => getDoc(doc(db, 'users', friendDoc.id)));
-                const friendDocs = await Promise.all(friendPromises);
-                friendDocs.forEach(friendDataSnap => {
-                    if (friendDataSnap.exists()) {
-                        homeView.appendChild(renderUserListItem({ uid: friendDataSnap.id, ...friendDataSnap.data() }, 'friend'));
-                    }
-                });
             });
         }
-
         function loadRequests() {
             const requestsRef = collection(db, 'users', currentUser.uid, 'friendRequests');
-            onSnapshot(requestsRef, async (snapshot) => {
-                requestsView.innerHTML = ''; // আগের লিস্ট পরিষ্কার করা হচ্ছে
-                if (snapshot.empty) {
-                    requestsView.innerHTML = '<p class="placeholder-text">No new friend requests.</p>';
-                    requestsBadge.style.display = 'none';
-                    return;
-                }
-                
-                // রিকুয়েস্ট কাউন্ট ব্যাজে দেখানো হচ্ছে
+            unsubscribeRequests = onSnapshot(requestsRef, async (snapshot) => {
+                requestsView.innerHTML = '';
+                requestsBadge.style.display = snapshot.empty ? 'none' : 'flex';
                 requestsBadge.textContent = snapshot.size;
-                requestsBadge.style.display = 'flex';
-
-                const requestPromises = snapshot.docs.map(reqDoc => getDoc(doc(db, 'users', reqDoc.id)));
-                const requestDocs = await Promise.all(requestPromises);
-                requestDocs.forEach(userDataSnap => {
-                    if (userDataSnap.exists()) {
-                        requestsView.appendChild(renderUserListItem({ uid: userDataSnap.id, ...userDataSnap.data() }, 'request'));
-                    }
-                });
+                if (snapshot.empty) requestsView.innerHTML = '<p class="placeholder-text">No new friend requests.</p>';
+                else {
+                    const requestPromises = snapshot.docs.map(reqDoc => getDoc(doc(db, 'users', reqDoc.id)));
+                    const requestDocs = await Promise.all(requestPromises);
+                    requestDocs.forEach(userDataSnap => {
+                        if (userDataSnap.exists()) requestsView.appendChild(renderUserListItem({ uid: userDataSnap.id, ...userDataSnap.data() }, 'request'));
+                    });
+                }
             });
         }
-        
-        // সার্চ লজিক এখন সার্চ রেজাল্ট ডিভে কন্টেন্ট দেখাবে
         searchInput.addEventListener('input', debounce(async (e) => {
-            // ... (আগের সার্চ লজিক এখানে থাকবে, শুধু sidebarContent এর বদলে searchResults এ দেখাবে) ...
             const queryText = e.target.value.toLowerCase().trim();
-            if (queryText.length < 3) {
-                searchResults.innerHTML = '<p class="placeholder-text">Type at least 3 characters to search.</p>';
-                return;
-            }
+            if (queryText.length < 3) { searchResults.innerHTML = ''; return; }
             const q = query(collection(db, 'users'), where('username', '>=', queryText), where('username', '<=', queryText + '\uf8ff'));
             const querySnapshot = await getDocs(q);
             searchResults.innerHTML = '';
-            if (querySnapshot.empty) {
-                searchResults.innerHTML = '<p class="placeholder-text">No users found.</p>';
-            } else {
-                querySnapshot.docs.forEach(docSnap => {
-                    if (docSnap.id !== currentUser.uid) {
-                        searchResults.appendChild(renderUserListItem({ uid: docSnap.id, ...docSnap.data() }, 'search'));
-                    }
-                });
-            }
+            if(querySnapshot.empty) searchResults.innerHTML = '<p class="placeholder-text">No users found.</p>';
+            else querySnapshot.docs.forEach(docSnap => {
+                if (docSnap.id !== currentUser.uid) searchResults.appendChild(renderUserListItem({ uid: docSnap.id, ...docSnap.data() }, 'search'));
+            });
         }, 500));
-        
-        function openChat(friendData) {
-            chatWindow.classList.add('active');
-            // ... (বাকি চ্যাট ওপেন করার লজিক আগের মতোই) ...
+
+        // --- Friend Management ---
+        async function sendRequest(friendUid) {
+            try {
+                await setDoc(doc(db, 'users', friendUid, 'friendRequests', currentUser.uid), { sentAt: serverTimestamp() });
+                alert('Friend request sent!');
+            } catch (error) { alert('Error: ' + error.message); }
+        }
+        async function acceptRequest(friendUid) {
+            const batch = writeBatch(db);
+            batch.set(doc(db, 'users', currentUser.uid, 'friends', friendUid), { addedAt: serverTimestamp() });
+            batch.set(doc(db, 'users', friendUid, 'friends', currentUser.uid), { addedAt: serverTimestamp() });
+            batch.delete(doc(db, 'users', currentUser.uid, 'friendRequests', friendUid));
+            await batch.commit();
+        }
+        async function declineRequest(friendUid) {
+            await deleteDoc(doc(db, 'users', currentUser.uid, 'friendRequests', friendUid));
         }
 
-        chatWindow.querySelector('.back-arrow').addEventListener('click', () => {
+        // --- Chatting ---
+        function openChat(friendData) {
+            currentChatFriend = friendData;
+            chatWindow.classList.add('active');
+            chatWithUsername.textContent = '@' + friendData.username;
+            chatAvatar.innerHTML = `<img src="${friendData.photoURL || `https://ui-avatars.com/api/?name=${friendData.username}`}" alt="">`;
+            currentChatId = currentUser.uid > friendData.uid ? `${currentUser.uid}_${friendData.uid}` : `${friendData.uid}_${currentUser.uid}`;
+            if(unsubscribeMessages) unsubscribeMessages();
+            const chatRef = doc(db, 'chats', currentChatId);
+            unsubscribeMessages = onSnapshot(chatRef, (docSnap) => {
+                messagesWrapper.innerHTML = '';
+                if (docSnap.exists() && docSnap.data().messages) {
+                    docSnap.data().messages.forEach(msg => {
+                        const bubble = document.createElement('div');
+                        bubble.className = 'message-bubble ' + (msg.sender === currentUser.uid ? 'my-message' : 'friend-message');
+                        bubble.textContent = msg.text;
+                        messagesWrapper.appendChild(bubble);
+                    });
+                    messagesWrapper.parentElement.scrollTop = messagesWrapper.parentElement.scrollHeight;
+                }
+            });
+        }
+        backArrow.addEventListener('click', () => {
             chatWindow.classList.remove('active');
-            // ... (বাকি চ্যাট ক্লোজ করার লজিক আগের মতোই) ...
+            currentChatFriend = null; currentChatId = null;
+            if(unsubscribeMessages) unsubscribeMessages();
+        });
+        messageForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = messageInput.value.trim();
+            if (text === '' || !currentChatId) return;
+            const chatRef = doc(db, 'chats', currentChatId);
+            const newMessage = { text: text, sender: currentUser.uid, createdAt: serverTimestamp() };
+            messageInput.value = '';
+            try {
+                const chatDoc = await getDoc(chatRef);
+                if (!chatDoc.exists()) await setDoc(chatRef, { participants: [currentUser.uid, currentChatFriend.uid], messages: [newMessage] });
+                else await updateDoc(chatRef, { messages: arrayUnion(newMessage) });
+            } catch (error) { alert('Error: ' + error.message); }
         });
 
-        // Helper functions (debounce, showScreen, ইত্যাদি) আগের মতোই থাকবে...
-        // ... (আগের কোডের বাকি অংশ এখানে পেস্ট করতে হবে, যেমন acceptRequest, declineRequest, sendRequest, messageForm submit, ইত্যাদি) ...
-        // এই ফাংশনগুলি অপরিবর্তিত আছে, তাই পুনরায় লিখছি না। শুধু নিশ্চিত করবে যে সেগুলি তোমার স্ক্রিপ্টে আছে।
+        // --- Final Loader Hiding Failsafe ---
+        setTimeout(() => { 
+            if (document.getElementById('loader-screen').classList.contains('active')) {
+                showScreen('login-screen');
+            }
+        }, 3000);
 
     </script>
 </body>
